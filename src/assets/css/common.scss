@@ -1,0 +1,190 @@
+@import "./fonction.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup,
+menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, a {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+.yd-confirm-ft > a.primary {
+  font-size: rem(17);
+  color: #007AFF;
+}
+
+body {
+  font-size: rem(15);
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: PingFangSC-Regular;
+}
+
+html, body {
+  height: 100%;
+}
+
+//.yd-toast-none-icon {
+//  position: absolute;
+//  bottom: 30px;
+//}
+//#app {
+
+.yd-navbar-item {
+  color: #fff;
+  font-size: rem(15) !important;
+  i {
+    display: inline-block;
+    color: #ffffff !important;
+    width: rem(18);
+    height: rem(20);
+  }
+
+  span{
+    color: #fff;
+  }
+}
+
+.yd-cell-item {
+  padding-left: rem(15);
+  height: rem(48);
+}
+
+.yd-cell-left {
+  width: rem(50);
+  font-size: rem(15);
+  color: #333333
+}
+
+.yd-cell-right {
+  font-size: rem(15);
+  text-align: left;
+  padding-left: rem(39);
+  color: #333333;
+}
+
+.yd-cell-right .yd-input input {
+  font-size: rem(15) !important;
+  color: #AAAAAA;
+}
+
+.yd-cell:after {
+  border-bottom: 0;
+}
+
+.yd-btn-block {
+  height: rem(48);
+  font-size: rem(17);
+}
+
+.nextBtn {
+  padding: 0 rem(15);
+}
+
+.yd-input-clear:after {
+  font-size: rem(18);
+  color: #AAAAAA;
+}
+
+.yd-alert {
+  width: rem(270);
+  border-radius: 12px !important;
+}
+
+.yd-confirm-bd {
+  font-size: rem(17);
+  color: #030303;
+  letter-spacing: -0.41px;
+}
+
+.yd-cell-arrow span {
+  width: 100%;
+}
+
+.yd-checkbox-text {
+  color: #333333;
+  font-size: rem(13);
+}
+
+.yd-actionsheet {
+  a {
+    color: #333333;
+    height: rem(48);
+    font-size: rem(15);
+    letter-spacing: -0.17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .yd-actionsheet-action {
+    color: #5983DE;
+    letter-spacing: -0.17px;
+    margin-top: rem(20);
+  }
+  .yd-actionsheet-item:first-child {
+    height: rem(40);
+    font-size: rem(13);
+    color: #999999;
+    letter-spacing: -0.14px;
+  }
+  .yd-actionsheet-item:nth-child(2) {
+    height: rem(40);
+    color: #E78262;
+    letter-spacing: -0.14px;
+  }
+}
+
+.yd-confirm {
+  border-radius: 12px;
+  width: rem(270);
+  .yd-confirm-bd {
+    font-size: rem(17);
+    color: #030303;
+    letter-spacing: -0.41px;
+    text-align: center;
+  }
+  .yd-confirm-ft > a.default {
+    font-size: rem(17);
+    color: #007AFF;
+  }
+  .yd-confirm-ft > a.primary {
+    font-size: rem(17);
+    color: #007AFF;
+  }
+}
+
+.slot1 {
+  .picker-item.picker-selected {
+    font-size: rem(23.5);
+    color: #000000;
+    letter-spacing: 0.38px;
+  }
+  .picker-item {
+    font-size: rem(19);
+    //color: #000000;
+    letter-spacing: 0.4px;
+  }
+}
+
+//}

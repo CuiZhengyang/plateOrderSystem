@@ -1,0 +1,7 @@
+@function rem($val) {
+  @return $val/37.5 * 1rem;
+}
+
+@function rem750($val) {
+  @return $val/75 * 1rem;
+}
