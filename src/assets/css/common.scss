@@ -54,12 +54,12 @@ html, body {
 .yd-navbar-item {
   color: #fff;
   font-size: rem(15) !important;
-  i {
-    display: inline-block;
-    color: #ffffff !important;
-    width: rem(18);
-    height: rem(20);
-  }
+  //i {
+  //  display: inline-block;
+  //  color: #ffffff !important;
+  //  width: rem(18);
+  //  height: rem(20);
+  //}
 
   span{
     color: #fff;
@@ -188,3 +188,21 @@ html, body {
 }
 
 //}
+#board  .yd-list-item .yd-list-img{
+  display: none;
+}
+
+.stepBtn{
+  position: fixed;
+  height: rem(78);
+  border-top:1px solid #d9d9d9;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  z-index: 100;
+}
+
+.yd-list-title{
+  font-size: rem(15) !important;
+  line-height: rem(15)!important;
+}

@@ -15,6 +15,7 @@ export default {
   @import "./assets/css/common.scss";
   #app {
     min-height: 100%;
+    background: #f7f7fa;
   }
 
 </style>

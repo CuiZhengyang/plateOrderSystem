@@ -39,53 +39,26 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-
     console.log('组件路由勾子：beforeRouteEnter')
-    console.log(this)  //undefined，不能用this来获取vue实例
     next(vm => {
       console.log('组件路由勾子beforeRouteEnter的next')
-      console.log(vm)  //vm为vue的实例
-      vm.$data.msg="next"
     })
   },
-  beforeCreate:function () {
-    console.log("beforeCreate");
-    console.log(this);
-//    console.log(this.$http.get("/asdfasdf"))
+  beforeCreate () {
+    console.log('组件：beforeCreate')
+  },
+  created () {
     this.$nextTick(() => {
-      console.log('nextTick')  //回调里的函数一直到真实的dom渲染结束后，才执行
+      console.log('nextTick')
     })
-
+    console.log('组件：created')
   },
-  created:function(){
-    console.log("created");
-    console.log(this);
-    console.log(this.$data.msg)
+  beforeMount () {
+    console.log('组件：beforeMount')
   },
-  beforeMount:function () {
-    console.log("beforeMount");
-    console.log(this);
-  },
-  mounted:function () {
-    console.log("mounted");
-    console.log(this);
-    setTimeout(()=>{
-      this.a.push({name:"cc"})
-    },5000)
-  },
-  beforeRouteUpdate (to, from, next) {
-    // 在当前路由改变，但是该组件被复用时调用
-    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-    // 可以访问组件实例 `this`
-    console.log("beforeRouteUpdate");
-    console.log(this)    //可以访问vue实例
-  },
-  beforeRouteLeave (to, from, next) {
-    console.log("beforeRouteLeave");
-    console.log(this)    //可以访问vue实例
-    console.log('组件路由勾子：beforeRouteLeave')
-    next()
+  mounted () {
+    console.log('组件：mounted')
+    console.log(this)
   },
   beforeUpdate(){
     console.log("beforeUpdate");

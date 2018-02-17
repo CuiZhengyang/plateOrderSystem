@@ -30,9 +30,18 @@ Vue.component(Popup.name, Popup);
 Vue.component(Picker.name, Picker);
 Vue.component(InfiniteScroll.name, InfiniteScroll);
 
+
 Vue.use(YDUI);
 Vue.use(VueResource);
 Vue.config.productionTip = false;
+
+
+
+import { Swipeout, SwipeoutItem, SwipeoutButton } from 'vux'
+
+Vue.component(Swipeout.name, Swipeout);
+Vue.component(SwipeoutItem.name, SwipeoutItem);
+Vue.component(SwipeoutButton.name, SwipeoutButton);
 
 // Vue.http.options.emulateJSON = true;
 // Vue.http.interceptors.push(function(request, next) {
@@ -41,6 +50,12 @@ Vue.config.productionTip = false;
 //   // request.headers={'Content-Type': 'application/json'};
 //   next();
 // });
+
+
+
+
+
+
 
 /* eslint-disable no-new */
 new Vue({
