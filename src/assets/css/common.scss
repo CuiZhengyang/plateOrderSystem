@@ -68,7 +68,7 @@ html, body {
 
 .yd-cell-item {
   padding-left: rem(15);
-  height: rem(48);
+  min-height: rem(48);
 }
 
 .yd-cell-left {
@@ -203,6 +203,30 @@ html, body {
 }
 
 .yd-list-title{
-  font-size: rem(15) !important;
+  font-size: rem(12) !important;
   line-height: rem(15)!important;
+  font-weight: normal;
+}
+.yd-list-other span{
+  font-size: rem(10) !important;
+  line-height: rem(12)!important;
+  font-weight: normal;
+}
+#checkOrder {
+  .yd-cell-title{
+    font-size: 0.4rem ;
+    color: #333333;
+  }
+}
+
+
+
+#beizhu{
+  .yd-cell-title{
+    font-size: 0.4rem ;
+    color: #333333;
+  }
+  .yd-cell-right:last-child{
+      padding: 0;
+    }
 }

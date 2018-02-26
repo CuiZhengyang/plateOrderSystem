@@ -13,7 +13,7 @@
         </router-link>
       </div>
       <div class="home-item bg2">
-        <router-link to="#">
+        <router-link to="/commodity">
           <i class="icon item2"></i>
           <span>五金订单</span>
         </router-link>
@@ -25,13 +25,13 @@
         </router-link>
       </div>
       <div class="home-item bg4">
-        <router-link to="#">
+        <router-link to="/stockCheck">
           <i class="icon item4"></i>
           <span>库存查询系统</span>
         </router-link>
       </div>
       <div class="home-item bg5">
-        <router-link to="#">
+        <router-link to="/ordersList">
           <i class="icon item5"></i>
           <span>订单管理系统</span>
         </router-link>

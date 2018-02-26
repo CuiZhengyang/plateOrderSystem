@@ -38,6 +38,9 @@ Vue.config.productionTip = false;
 
 
 import { Swipeout, SwipeoutItem, SwipeoutButton } from 'vux'
+import { ButtonTab, ButtonTabItem } from 'vux'
+Vue.component(ButtonTab.name, ButtonTab);
+Vue.component(ButtonTabItem.name, ButtonTabItem);
 
 Vue.component(Swipeout.name, Swipeout);
 Vue.component(SwipeoutItem.name, SwipeoutItem);

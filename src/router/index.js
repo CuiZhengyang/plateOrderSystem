@@ -7,7 +7,10 @@ import boardOrder from '@/components/boardOrder'
 import Colors from '@/components/Colors'
 import checkOrder from '@/components/checkOrder'
 import result from '@/components/result'
-
+import commodityOrder from '@/components/commodityOrder'
+import stockCheck from '@/components/stockCheck'
+import ordersList from '@/components/ordersList'
+import orderDetail from '@/components/orderDetail'
 import {Confirm, Alert, Toast, Notify, Loading} from 'vue-ydui/dist/lib.rem/dialog';
 
 Vue.use(Router)
@@ -43,9 +46,29 @@ var router = new Router({
       component: boardOrder
     },
     {
+      path: '/commodity',
+      name: 'commodityOrder',
+      component: commodityOrder
+    },
+    {
       path: '/checkOrder',
       name: 'checkOrder',
       component: checkOrder
+    },
+    {
+      path: '/stockCheck',
+      name: 'stockCheck',
+      component: stockCheck
+    },
+    {
+      path: '/ordersList',
+      name: 'ordersList',
+      component: ordersList
+    },
+    {
+      path: '/orderDetail',
+      name: 'orderDetail',
+      component: orderDetail
     },
     {
       path: '/result/:result',

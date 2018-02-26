@@ -26,11 +26,11 @@
           <span slot="right">{{product}}</span>
         </yd-cell-item>
         <yd-cell-item arrow href="#" @click.native="changeMetal">
-          <span slot="left">材质</span>
+          <span slot="left">规格</span>
           <span slot="right">{{metal}}</span>
         </yd-cell-item>
         <yd-cell-item arrow href="#" @click.native="changeColor">
-          <span slot="left">花色</span>
+          <span slot="left">品牌</span>
           <span slot="right">{{color}}</span>
         </yd-cell-item>
         <yd-cell-item>
@@ -103,7 +103,7 @@
         </div>
       </mt-picker>
     </mt-popup>
-    <!--材质-->
+    <!--规格-->
     <mt-popup
       v-model="popupVisible2"
       position="bottom"
@@ -117,12 +117,12 @@
         @change="onMetalValuesChange">
         <div class="popupbar">
           <div class="popupbarlBt" @click="changeMetal">取消</div>
-          <div class="popupbarT">材质</div>
+          <div class="popupbarT">规格</div>
           <div class="popupbarrBt" @click="changeMetal">完成</div>
         </div>
       </mt-picker>
     </mt-popup>
-    <!--花色-->
+    <!--品牌-->
     <mt-popup
       v-model="popupVisible3"
       position="bottom"
@@ -136,7 +136,7 @@
         @change="onColorValuesChange">
         <div class="popupbar">
           <div class="popupbarlBt" @click="changeColor">取消</div>
-          <div class="popupbarT">花色</div>
+          <div class="popupbarT">品牌</div>
           <div class="popupbarrBt" @click="changeColor">完成</div>
         </div>
       </mt-picker>
