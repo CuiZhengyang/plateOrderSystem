@@ -46,7 +46,7 @@ Vue.component(Swipeout.name, Swipeout);
 Vue.component(SwipeoutItem.name, SwipeoutItem);
 Vue.component(SwipeoutButton.name, SwipeoutButton);
 
-// Vue.http.options.emulateJSON = true;
+Vue.http.options.emulateJSON = true;
 // Vue.http.interceptors.push(function(request, next) {
 //   // modify headers
 //   console.log("aa")

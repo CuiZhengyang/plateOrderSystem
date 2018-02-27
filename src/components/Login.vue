@@ -46,10 +46,10 @@
       handleClick(){
         if(this.$refs.name.valid&&this.$refs.password.valid)
         {
-          this.$dialog.toast({
-            mes: '处理登录的 逻辑！',
-            timeout: 1000
-          });
+          this.$store.dispatch("login",{
+            name: this.name,
+            password: this.password
+          })
         }
         else if(!this.$refs.name.valid){
           this.$dialog.toast({

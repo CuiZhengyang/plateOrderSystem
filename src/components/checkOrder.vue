@@ -126,11 +126,6 @@
     name: "check-order",
     data() {
       return {
-        name: '崔正阳',
-        mobile: '15607110712',
-        province: '河南',
-        city: '安阳',
-        addr: '文峰区三里屯A-115',
         remarks:'',
         list: [
           {
@@ -176,6 +171,23 @@
           myLoading.close("up")
         },3000)
       }
+    },
+    computed:{
+      name: function () {
+        return this.$store.state.name;
+      },
+      mobile: function () {
+        return this.$store.state.tel;
+      },
+      province: function () {
+        return this.$store.state.province;
+      },
+      city: function () {
+        return this.$store.state.city;
+      },
+      addr: function () {
+        return this.$store.state.detailAddr;
+      },
     }
   }
 </script>

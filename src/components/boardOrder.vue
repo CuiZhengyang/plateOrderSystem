@@ -23,15 +23,15 @@
 
         <yd-cell-item arrow href="#" @click.native="changeProduct">
           <span slot="left">产品名称</span>
-          <span slot="right">{{product}}</span>
+          <span slot="right" style="color: #AAAAAA">{{product}}</span>
         </yd-cell-item>
         <yd-cell-item arrow href="#" @click.native="changeMetal">
           <span slot="left">材质</span>
-          <span slot="right">{{metal}}</span>
+          <span slot="right" style="color: #AAAAAA">{{metal}}</span>
         </yd-cell-item>
         <yd-cell-item arrow href="#" @click.native="changeColor">
           <span slot="left">花色</span>
-          <span slot="right">{{color}}</span>
+          <span slot="right" style="color: #AAAAAA" >{{color}}</span>
         </yd-cell-item>
         <yd-cell-item>
           <span slot="left">数量</span>
@@ -145,6 +145,8 @@
 </template>
 
 <script>
+  import config from "../config/config"
+
   export default {
     name: "board-order",
     data: function () {
@@ -159,7 +161,7 @@
         productSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: [],
             className: 'slot1',
             textAlign: 'center'
           }
@@ -167,7 +169,7 @@
         metalSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: [],
             className: 'slot1',
             textAlign: 'center'
           }
@@ -175,13 +177,10 @@
         colorSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: [],
             className: 'slot1',
             textAlign: 'center'
           }
-        ],
-        list: [
-
         ]
       }
     },
@@ -197,7 +196,8 @@
             color: this.color,
             count: this.count
           }
-          this.list.push(item);
+          // this.list.push(item);
+          this.$store.commit("addBoardList",item)
         }
         else{
           console.log(this.$refs.count.valid)
@@ -219,22 +219,55 @@
       },
       onProductValuesChange(picker, values) {
         this.product = picker.getValues()[0];
+        if(this.product!=undefined)
+        {
+          this.$store.dispatch("changeProduct",{"product":this.product }).then((data)=>{
+            this.metalSlots[0].values=data.materials;
+            this.colorSlots[0].values=data.colors;
+          })
+        }
       },
       onMetalValuesChange(picker, values) {
         this.metal = picker.getValues()[0];
+        if(this.metal!=undefined)
+        {
+          this.$store.dispatch("changeMetal",{"product":this.product ,"metal":this.metal }).then((data)=>{
+            this.colorSlots[0].values=data.colors;
+          })
+        }
       },
       onColorValuesChange(picker, values) {
         this.color = picker.getValues()[0];
       },
       onButtonClick(index) {
-        this.list.splice(index, 1)
+        this.$store.commit("delBoardList",index)
       },
       handleEvents(type) {
         console.log('event: ', type)
       },
       handleClick(){
-
+        if(this.$store.state.boardList.length!=0)
+         this.$router.push({path:"/checkOrder"})
+        else
+          config.functions.tostNotify("您没有购买任何商品");
+      },
+      initBoardProduct(){
+        this.$store.dispatch("getAllBoards").then((data)=>{
+          this.productSlots[0].values=data.products;
+          this.metalSlots[0].values=data.materials;
+          this.colorSlots[0].values=data.colors;
+        })
+      },
+    },
+    computed:{
+      list: function () {
+        return this.$store.state.boardList?this.$store.state.boardList:[];
       }
+    },
+    created(){
+      this.$nextTick(() => {
+        this.initBoardProduct();
+      })
     }
   }
 </script>

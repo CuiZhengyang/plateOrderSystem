@@ -1,22 +1,11 @@
-var rootdir = "/bioauth-core-access-web/rest/wx"
-
+var rootdir = "/plateOrderSystem/server/";
+import {Confirm, Alert, Toast, Notify, Loading} from 'vue-ydui/dist/lib.rem/dialog';
 var config = {
   url: {
-    beforeLogin: rootdir + "/isLogin",
-    sendMobile: rootdir + "/getMsgCode",
-    login: rootdir + "/submitCode",
-    idCheck: rootdir + "/realAuth",
-    shengWuRenZheng: rootdir + "/bioAuth",
-    addCard: rootdir + "/addCard",
-    servContent: rootdir + "/overview",
-    cardList: rootdir + "/cardList",
-    delCard: rootdir + "/delCard",
-    setDefaultCard: rootdir + "/setDefaultCard",
-    merList: rootdir + "/merList",
-    merAuth: rootdir + "/merAuth",
-    rmAuth: rootdir + "/rmAuth",
-    consumRecord: rootdir + "/consumRecord",
-    getweixin: rootdir + "/getToken",
+    login: rootdir + "login.php",
+    getAllBoards:rootdir+"getAllBoards.php",
+    changeProduct:rootdir+"changeProduct.php",
+    changeMetal:rootdir+"changeMetal.php",
   },
   const: {
     pagesize: 15,
@@ -25,7 +14,7 @@ var config = {
     cookName: "WXSESSIONID"
   },
   resCode: {
-    success: 1000
+    success: '000000'
   },
   functions: {
     getCookie(cname) {
@@ -40,6 +29,9 @@ var config = {
     },
     trim(str) {
       return str.replace(/\s|\xA0/g, "");
+    },
+    tostNotify(str){
+      Toast({mes: str, timeout: 1000})
     }
   }
 }
