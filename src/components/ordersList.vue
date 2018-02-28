@@ -1,7 +1,7 @@
 <template>
   <div id="orders">
     <yd-navbar title="隆饰板材订单系统" bgcolor="#1D2838" color="#fff">
-      <router-link to="/home" slot="left" >
+      <router-link to="/home" slot="left">
         <yd-navbar-back-icon color="#FFF">返回</yd-navbar-back-icon>
       </router-link>
     </yd-navbar>
@@ -13,21 +13,24 @@
     </div>
     <div class="orderTableContent">
       <div v-show="tabValue==0">
-        <yd-cell-group>
-
-          <yd-cell-item arrow type="label" v-for="item,index in list0" :key="item.num"
-                        @click.native="showDetail(item.num)">
-            <span slot="left">订单号：{{item.num}}</span>
-          </yd-cell-item>
 
 
-        </yd-cell-group>
-      </div>
-      <div v-show="tabValue==1">
-        <yd-cell-item arrow type="label" v-for="item,index in list1" :key="item.num"
+        <yd-cell-item arrow type="label" v-for="item,index in unCompleteList" :key="item.num"
                       @click.native="showDetail(item.num)">
           <span slot="left">订单号：{{item.num}}</span>
         </yd-cell-item>
+        <div v-if="unCompleteList.length==0" style="text-align: center;padding: 10px">
+          您没有订单
+        </div>
+      </div>
+      <div v-show="tabValue==1">
+        <yd-cell-item arrow type="label" v-for="item,index in completeList" :key="item.num"
+                      @click.native="showDetail(item.num)">
+          <span slot="left">订单号：{{item.num}}</span>
+        </yd-cell-item>
+        <div v-if="completeList.length==0" style="text-align: center;padding: 10px">
+          您没有已完成的订单
+        </div>
       </div>
     </div>
   </div>
@@ -39,16 +42,8 @@
     data() {
       return {
         tabValue: 0,
-        list0: [
-          {
-            num: "1234567890"
-          }
-        ],
-        list1: [
-          {
-            num: "2234567890"
-          }
-        ]
+        unCompleteList: [],
+        completeList: []
       }
     },
     methods: {
@@ -60,7 +55,27 @@
       },
       showDetail(num) {
         console.log(num)
+        this.$router.push({path:"/orderDetail/"+num})
+      },
+      initData() {
+        this.$store.dispatch("getAllOrderList").then((data) => {
+          data.completeList.forEach((item) => {
+            this.completeList.push({
+              num: item
+            })
+          })
+          data.unCompleteList.forEach((item) => {
+            this.unCompleteList.push({
+              num: item
+            })
+          })
+        })
       }
+    },
+    created: function () {
+      this.$nextTick(() => {
+        this.initData();
+      })
     }
   }
 </script>

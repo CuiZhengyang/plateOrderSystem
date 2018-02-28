@@ -66,9 +66,10 @@ var router = new Router({
       component: ordersList
     },
     {
-      path: '/orderDetail',
+      path: '/orderDetail/:orderNum',
       name: 'orderDetail',
-      component: orderDetail
+      component: orderDetail,
+      props:true
     },
     {
       path: '/result/:result',

@@ -8,25 +8,18 @@
 
     <div id="orderState">
       <yd-timeline>
-        <yd-timeline-item>
-          <p>【南宁市】您的订单正在配送途中，请您准备签收，感谢您的耐心等待。京东扫码付，单单享立减。</p>
-          <p style="margin-top: 10px;">2017-08-18 08:24:18</p>
+        <yd-timeline-item v-for="(item,index) in states" :key="index">
+          <p>{{item.describes}}</p>
+          <p style="margin-top: 10px;">{{item.time}}</p>
         </yd-timeline-item>
-        <yd-timeline-item>
-          <p>【南宁市】您的订单已到达【南宁安吉站】</p>
-          <p style="margin-top: 10px;">2017-08-18 07:25:08</p>
-        </yd-timeline-item>
-        <yd-timeline-item>
-          <p>【南宁市】您的订单在京东【南宁分拨中心】发货完成，准备送往京东【南宁安吉站】</p>
-          <p style="margin-top: 10px;">2017-08-17 21:44:08</p>
-        </yd-timeline-item>
+
       </yd-timeline>
     </div>
 
     <div id="form">
       <yd-cell-group>
         <yd-cell-item>
-          <span slot="left">用户名：</span>
+          <span slot="left">收货人：</span>
           <yd-input slot="right" required v-model="name" max="20"  :readonly="true" placeholder="请输入用户名"
                     :show-clear-icon="false"
                     :show-error-icon="false"
@@ -36,7 +29,7 @@
         </yd-cell-item>
 
         <yd-cell-item>
-          <span slot="left">电话：</span>
+          <span slot="left">联系方式：</span>
           <yd-input slot="right" required regex="mobile" v-model="mobile" :readonly="true"  placeholder="请输入电话"
                     :show-clear-icon="false"
                     :show-error-icon="false"
@@ -47,27 +40,7 @@
 
 
         <yd-cell-item>
-          <span slot="left">省份：</span>
-          <yd-input slot="right" required v-model="province" :readonly="true"  placeholder="请输入您所在的省份"
-                    :show-clear-icon="false"
-                    :show-error-icon="false"
-                    :show-success-icon="false"
-                    :show-required-icon="false"
-          ></yd-input>
-        </yd-cell-item>
-
-        <yd-cell-item>
-          <span slot="left">城市：</span>
-          <yd-input slot="right" required v-model="city"  :readonly="true"  placeholder="请输入您所在的城市"
-                    :show-clear-icon="false"
-                    :show-error-icon="false"
-                    :show-success-icon="false"
-                    :show-required-icon="false"
-          ></yd-input>
-        </yd-cell-item>
-
-        <yd-cell-item>
-          <span slot="left">详细地址：</span>
+          <span slot="left">收货地址：</span>
           <yd-input slot="right" required v-model="addr" placeholder="请输入您所在的详细地址"
                     :show-clear-icon="false"
                     :show-error-icon="false"
@@ -119,44 +92,44 @@
     name: "order-detail",
     data() {
       return {
-        name: '崔正阳',
-        mobile: '15607110712',
-        province: '河南',
-        city: '安阳',
-        addr: '文峰区三里屯A-115',
-        remarks:'阿喀琉斯的飞机拉克丝',
-        list: [
-          {
-            product: "标题111标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 80
-          },
-          {
-            product: "标题222标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 50
-          },
-          {
-            product: "标题333标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 40
-          },
-          {
-            product: "标题444标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 60
-          }
-        ]
+        name: '',
+        mobile: '',
+        addr: '',
+        remarks:'',
+        list: [],
+        states:[]
       }
     },
     methods: {
       goback() {
         this.$router.go(-2)
       }
+    },
+    created:function () {
+      this.$nextTick(()=>{
+        let orderNum=this.$route.params.orderNum;
+        this.$store.dispatch("getOrderDetail",{
+          orderNum:orderNum
+        }).then((data)=>{
+          this.name=data.name;
+          this.mobile=data.tel;
+          this.addr=data.rdetailAddr;
+          this.remarks=data.remarks;
+
+          data.goods.forEach((item)=>{
+            this.list.push({
+              product: item.name,
+              metal: item.material,
+              color: item.color,
+              count: item.count,
+            })
+          })
+
+          data.states.forEach((item)=>{
+            this.states.push(item)
+          })
+        })
+      })
     }
   }
 </script>

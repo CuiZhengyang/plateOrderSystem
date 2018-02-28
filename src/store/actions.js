@@ -79,6 +79,11 @@ const actions = {
       })
     })
   },
+  /**
+   * 添加板材订单
+   * @param context
+   * @param option
+   */
   addBoardOrder(context, option) {
     option.name = context.state.name;
     option.tel = context.state.tel;
@@ -102,6 +107,46 @@ const actions = {
     }, function (response) {
       config.functions.tostNotify("请检查您的网络")
       myLoading.close("up");
+    })
+  },
+  /**
+   * 查询所有的订单列表
+   */
+  getAllOrderList(context){
+    return new Promise(function (resolve,reject) {
+      Vue.http.get(config.url.getAllOrderList).then(function ({data}) {
+        if (data.statusCode == config.resCode.success) {
+          resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
+        }
+        else {
+          config.functions.tostNotify(data.msg)
+        }
+      },function () {
+        config.functions.tostNotify("请检查您的网络")
+      })
+    })
+  },
+  /**
+   * 获取订单详情
+   */
+  getOrderDetail(context,option){
+    return new Promise(function (resolve,reject) {
+      Vue.http.post(config.url.getOrderDetail,option).then(function ({data}) {
+        if (data.statusCode == config.resCode.success) {
+          resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
+        }
+        else {
+          config.functions.tostNotify(data.msg)
+        }
+      },function () {
+        config.functions.tostNotify("请检查您的网络")
+      })
     })
   }
 }

@@ -7,6 +7,8 @@ var config = {
     changeProduct:rootdir+"changeProduct.php",
     changeMetal:rootdir+"changeMetal.php",
     addBoardOrder:rootdir+"addBoardOrder.php",
+    getAllOrderList:rootdir+"getAllOrderList.php",
+    getOrderDetail:rootdir+"getOrderDetail.php"
   },
   const: {
     pagesize: 15,

@@ -2,7 +2,7 @@
   <div id="home">
     <yd-navbar title="隆饰板材订单系统" bgcolor="#1D2838" color="#fff">
       <router-link to="#" slot="right">
-        <yd-icon name="ucenter-outline" color="#fff"></yd-icon>
+        <yd-icon name="ucenter-outline" color="#fff" @click.native="popupVisible = true"></yd-icon>
       </router-link>
     </yd-navbar>
     <div id="home-content">
@@ -37,13 +37,29 @@
         </router-link>
       </div>
     </div>
+
+    <yd-actionsheet :items="operates" v-model="popupVisible" cancel="取消"></yd-actionsheet>
   </div>
 
 </template>
 
 <script>
   export default {
-    name: "homepage"
+    name: "homepage",
+    data: function () {
+      return {
+        popupVisible: false,
+        operates: [
+          {
+            label: '退出程序',
+            callback: () => {
+              this.$router.push({path: "/"});
+            }
+          },
+
+        ],
+      }
+    }
   }
 </script>
 
@@ -59,17 +75,17 @@
       justify-content: space-between;
       flex-wrap: wrap;
 
-      .home-item{
+      .home-item {
         flex: 0 0 rem(150);
         height: rem(120);
         margin: rem(15) 0 0 0;
         border-radius: rem(12);
 
-        a{
+        a {
           display: block;
           height: 100%;
 
-          .icon{
+          .icon {
             display: block;
             margin: auto;
             width: rem(56);
@@ -78,24 +94,24 @@
             background-size: cover;
           }
 
-          .item1{
+          .item1 {
             background-image: url("../assets/img/01.png");
           }
 
-          .item2{
+          .item2 {
             background-image: url("../assets/img/02.png");
           }
-          .item3{
+          .item3 {
             background-image: url("../assets/img/03.png");
           }
-          .item4{
+          .item4 {
             background-image: url("../assets/img/04.png");
           }
-          .item5{
+          .item5 {
             background-image: url("../assets/img/05.png");
           }
 
-          span{
+          span {
             margin-top: rem(15);
             display: block;
             text-align: center;
@@ -106,21 +122,21 @@
         }
       }
 
-      .bg1{
+      .bg1 {
         background: #42A5F5;
       }
 
-      .bg2{
+      .bg2 {
         background: #4ED0E1;
       }
-      .bg3{
-        background: #66BA6A ;
+      .bg3 {
+        background: #66BA6A;
       }
-      .bg4{
+      .bg4 {
         background: #EF5350;
       }
-      .bg5{
-        background: #FFA726 ;
+      .bg5 {
+        background: #FFA726;
       }
     }
 
