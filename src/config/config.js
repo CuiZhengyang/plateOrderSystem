@@ -6,15 +6,17 @@ var config = {
     getAllBoards:rootdir+"getAllBoards.php",
     changeProduct:rootdir+"changeProduct.php",
     changeMetal:rootdir+"changeMetal.php",
+    addBoardOrder:rootdir+"addBoardOrder.php",
   },
   const: {
     pagesize: 15,
     silent: false,//  静默日志  在上线的时候设为true
     // performance:true,//在浏览器开发工具中启用对组件初始化、编译、渲染和打补丁的性能追踪。
-    cookName: "WXSESSIONID"
+    cookName: "lsbcSessionID"
   },
   resCode: {
-    success: '000000'
+    success: '000000',
+    rlogin:'000001'
   },
   functions: {
     getCookie(cname) {

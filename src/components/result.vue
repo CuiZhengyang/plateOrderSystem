@@ -98,7 +98,7 @@
         this.$router.push({path:"/home"})
       },
       getServCont() {
-        // this.$router.push({path:"/servContent"})
+        this.$router.push({path:"/ordersList"})
       }
     }
   }

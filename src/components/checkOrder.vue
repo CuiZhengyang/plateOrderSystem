@@ -122,37 +122,12 @@
 
 <script>
   import myLoading from "./loading/myLoading"
+
   export default {
     name: "check-order",
     data() {
       return {
-        remarks:'',
-        list: [
-          {
-            product: "标题111标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 80
-          },
-          {
-            product: "标题222标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 50
-          },
-          {
-            product: "标题333标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 40
-          },
-          {
-            product: "标题444标题标题标题标题",
-            metal: 156.23,
-            color: 89.36,
-            count: 60
-          }
-        ]
+        remarks: '',
       }
     },
     methods: {
@@ -160,34 +135,101 @@
         this.$router.go(-2)
       },
       onButtonClick(index) {
-        this.list.splice(index, 1)
+        this.$store.commit("delBoardList", index)
       },
       handleEvents(type) {
         console.log('event: ', type)
       },
       handleClick() {
         myLoading.open("up")
-        setTimeout(function () {
-          myLoading.close("up")
-        },3000)
+        // setTimeout(function () {
+        //   myLoading.close("up")
+        // }, 3000)
+        this.$store.dispatch("addBoardOrder", {
+          type: 1,
+          remarks: this.remarks
+        })
       }
     },
-    computed:{
-      name: function () {
-        return this.$store.state.name;
+    computed: {
+      name: {
+        get: function () {
+          return this.$store.state.name;
+        },
+        set: function (name) {
+          let option = {
+            name: name,
+            tel: this.mobile,
+            province: this.province,
+            city: this.city,
+            detailAddr: this.addr,
+          }
+          this.$store.commit("writeUserInfo", option)
+        }
       },
-      mobile: function () {
-        return this.$store.state.tel;
+      mobile: {
+        get: function () {
+          return this.$store.state.tel;
+        },
+        set: function (mobile) {
+          let option = {
+            name: this.name,
+            tel: mobile,
+            province: this.province,
+            city: this.city,
+            detailAddr: this.addr,
+          }
+          this.$store.commit("writeUserInfo", option)
+        }
       },
-      province: function () {
-        return this.$store.state.province;
+      province: {
+        get:function () {
+          return this.$store.state.province;
+        },
+        set: function (province) {
+          let option = {
+            name: this.name,
+            tel: this.mobile,
+            province: province,
+            city: this.city,
+            detailAddr: this.addr,
+          }
+          this.$store.commit("writeUserInfo", option)
+        }
       },
-      city: function () {
-        return this.$store.state.city;
+      city: {
+        get:function () {
+          return this.$store.state.city;
+        },
+        set: function (city) {
+          let option = {
+            name: this.name,
+            tel: this.mobile,
+            province: this.province,
+            city: city,
+            detailAddr: this.addr,
+          }
+          this.$store.commit("writeUserInfo", option)
+        }
       },
-      addr: function () {
-        return this.$store.state.detailAddr;
+      addr: {
+        get:function () {
+          return this.$store.state.detailAddr;
+        },
+        set: function (addr) {
+          let option = {
+            name: this.name,
+            tel: this.mobile,
+            province: this.province,
+            city: this.city,
+            detailAddr: addr,
+          }
+          this.$store.commit("writeUserInfo", option)
+        }
       },
+      list: function () {
+        return this.$store.state.boardList ? this.$store.state.boardList : [];
+      }
     }
   }
 </script>
@@ -213,7 +255,6 @@
     border-bottom: 0;
   }
 
-
   #checkOrder {
     padding-bottom: rem(90);
   }
@@ -226,9 +267,10 @@
   /*.vux-swipeout {*/
   /*border-bottom: 1px solid #c9c9c9;*/
   /*}*/
-  .vux-swipeout{
+  .vux-swipeout {
     position: relative;
   }
+
   .vux-swipeout:not(:last-child):after {
     content: "";
     position: absolute;
