@@ -1,7 +1,7 @@
 <template>
   <div id="orders">
     <yd-navbar title="隆饰板材订单系统" bgcolor="#1D2838" color="#fff">
-      <router-link to="#" slot="left" @click.native="goback">
+      <router-link to="/home" slot="left" >
         <yd-navbar-back-icon color="#FFF">返回</yd-navbar-back-icon>
       </router-link>
     </yd-navbar>

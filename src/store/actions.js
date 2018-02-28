@@ -90,6 +90,7 @@ const actions = {
     Vue.http.post(config.url.addBoardOrder, option).then(function ({data}) {
       myLoading.close("up");
       if (data.statusCode == config.resCode.success) {
+        context.commit("delBoardList",-1)
         router.push({path: '/result/success'})
       }
       else if (data.statusCode == config.resCode.rlogin) {

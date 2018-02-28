@@ -12,7 +12,11 @@ const mutations = {
     state.boardList.push(item)
   },
   delBoardList(state,index){
-    state.boardList.splice(index, 1)
+    if(index!=-1)
+      state.boardList.splice(index, 1)
+    else{
+      state.boardList.splice(0, state.boardList.length)
+    }
   }
 
 }
