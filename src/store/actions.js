@@ -148,6 +148,26 @@ const actions = {
         config.functions.tostNotify("请检查您的网络")
       })
     })
+  },
+  /**
+   * 查看五金系统的材料详情
+   */
+  showStockState(context){
+    return new Promise(function (resolve,reject) {
+      Vue.http.post(config.url.showStockState).then(function ({data}) {
+        if (data.statusCode == config.resCode.success) {
+          resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
+        }
+        else {
+          config.functions.tostNotify(data.msg)
+        }
+      },function () {
+        config.functions.tostNotify("请检查您的网络")
+      })
+    })
   }
 }
 export default actions;
