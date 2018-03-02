@@ -17,7 +17,8 @@
 
         <yd-cell-item arrow type="label" v-for="item,index in unCompleteList" :key="item.num"
                       @click.native="showDetail(item.num)">
-          <span slot="left">订单号：{{item.num}}</span>
+          <span slot="left" class="left">订单号：{{item.num}}</span>
+          <span slot="right" class="right">{{item.name}}</span>
         </yd-cell-item>
         <div v-if="unCompleteList.length==0" style="text-align: center;padding: 10px">
           您没有订单
@@ -61,12 +62,14 @@
         this.$store.dispatch("getAllOrderList").then((data) => {
           data.completeList.forEach((item) => {
             this.completeList.push({
-              num: item
+              num: item.orderNum,
+              name:item.name
             })
           })
           data.unCompleteList.forEach((item) => {
             this.unCompleteList.push({
-              num: item
+              num: item.orderNum,
+              name:item.name
             })
           })
         })
@@ -95,6 +98,12 @@
 
     .yd-cell-box {
       margin-bottom: 0;
+    }
+    .right,.left{
+      font-size: rem(13);
+    }
+    .right{
+      text-align: right;
     }
   }
 

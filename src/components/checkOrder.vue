@@ -121,8 +121,7 @@
 </template>
 
 <script>
-  import myLoading from "./loading/myLoading"
-
+import  config from "../config/config"
   export default {
     name: "check-order",
     data() {
@@ -141,14 +140,33 @@
         console.log('event: ', type)
       },
       handleClick() {
-        myLoading.open("up")
-        // setTimeout(function () {
-        //   myLoading.close("up")
-        // }, 3000)
-        this.$store.dispatch("addBoardOrder", {
-          type: 1,
-          remarks: this.remarks
-        })
+        if (!this.name)
+        {
+          config.functions.tostNotify("请输入收货人姓名")
+        }
+        else if (!this.mobile)
+        {
+          config.functions.tostNotify("请输入收货人联系方式")
+        }
+        else if (!this.province)
+        {
+          config.functions.tostNotify("请输入收货人所在省份")
+        }
+        else if (!this.city)
+        {
+          config.functions.tostNotify("请输入收货人所在城市")
+        }
+        else if (!this.addr)
+        {
+          config.functions.tostNotify("请输入收货人详细地址")
+        }
+        else{
+          this.$store.dispatch("addBoardOrder", {
+            type: 1,
+            remarks: this.remarks
+          })
+        }
+
       }
     },
     computed: {

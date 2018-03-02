@@ -88,10 +88,16 @@ const actions = {
     option.name = context.state.name;
     option.tel = context.state.tel;
     option.uid = context.state.uid;
-    option.rdetailAddr = context.state.province + context.state.city + context.state.detailAddr;
-    if (option.type == "1")
-      option.list = context.state.boardList;
+    let city=context.state.city?context.state.city:"";
+    let addr=context.state.detailAddr?context.state.detailAddr:"";
+    option.rdetailAddr = context.state.province + city + addr;
 
+    if (option.type == "1")
+    {
+      option.list = context.state.boardList;
+    }
+
+    myLoading.open("up")
     Vue.http.post(config.url.addBoardOrder, option).then(function ({data}) {
       myLoading.close("up");
       if (data.statusCode == config.resCode.success) {
