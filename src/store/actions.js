@@ -33,6 +33,9 @@ const actions = {
         if (data.statusCode == config.resCode.success) {
           resolve(data.data)
         }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
+        }
         else {
           config.functions.tostNotify(data.msg)
         }
@@ -46,6 +49,9 @@ const actions = {
       Vue.http.post(config.url.getAllCommidity).then(function ({data}) {
         if (data.statusCode == config.resCode.success) {
           resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
         }
         else {
           config.functions.tostNotify(data.msg)
@@ -66,6 +72,9 @@ const actions = {
         if (data.statusCode == config.resCode.success) {
           resolve(data.data)
         }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
+        }
         else {
           config.functions.tostNotify(data.msg)
         }
@@ -84,6 +93,9 @@ const actions = {
       Vue.http.post(config.url.changeMetal, option).then(function ({data}) {
         if (data.statusCode == config.resCode.success) {
           resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
         }
         else {
           config.functions.tostNotify(data.msg)
@@ -210,6 +222,9 @@ const actions = {
       Vue.http.post(config.url.changeCmmProduct, option).then(function ({data}) {
         if (data.statusCode == config.resCode.success) {
           resolve(data.data)
+        }
+        else if (data.statusCode == config.resCode.rlogin) {
+          router.push({path: '/'})
         }
         else {
           config.functions.tostNotify(data.msg)

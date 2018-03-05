@@ -12,6 +12,7 @@ import stockCheck from '@/components/stockCheck'
 import ordersList from '@/components/ordersList'
 import orderDetail from '@/components/orderDetail'
 import {Confirm, Alert, Toast, Notify, Loading} from 'vue-ydui/dist/lib.rem/dialog';
+import config from "../config/config"
 
 Vue.use(Router)
 
@@ -33,12 +34,18 @@ var router = new Router({
     {
       path: '/home',
       name: 'Homepage',
-      component: Homepage
+      component: Homepage,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/color',
       name: 'Colors',
-      component: Colors
+      component: Colors,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/board',
@@ -48,41 +55,69 @@ var router = new Router({
     {
       path: '/commodity',
       name: 'commodityOrder',
-      component: commodityOrder
+      component: commodityOrder,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/checkOrder/:type',
       name: 'checkOrder',
       component: checkOrder,
-      props:true
+      props:true,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/stockCheck',
       name: 'stockCheck',
-      component: stockCheck
+      component: stockCheck,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/ordersList',
       name: 'ordersList',
-      component: ordersList
+      component: ordersList,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/orderDetail/:orderNum',
       name: 'orderDetail',
       component: orderDetail,
-      props:true
+      props:true,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/result/:result',
       component: result,
       name: "result",
+      props: true,
       meta: {
         requireAuth: true
-      },
-      props: true
+      }
     },
   ]
 })
 
+router.beforeEach(function (to,from,next) {
+  if (!!config.functions.getCookie(config.const.cookName)) {
+    next();
+  }
+  else{
+    if (to.meta.requireAuth) {
+      next({path: "/"});
+    }
+    else{
+      next();
+    }
+  }
+})
 
 export default router;
