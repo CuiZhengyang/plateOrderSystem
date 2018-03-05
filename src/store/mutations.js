@@ -17,7 +17,17 @@ const mutations = {
     else{
       state.boardList.splice(0, state.boardList.length)
     }
-  }
+  },
+  addCommodityList:function (state,item) {
+    state.commodityList.push(item)
+  },
+  delCommodityList(state,index){
+    if(index!=-1)
+      state.commodityList.splice(index, 1)
+    else{
+      state.commodityList.splice(0, state.commodityList.length)
+    }
+  },
 
 }
 export default mutations

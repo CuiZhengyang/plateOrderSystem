@@ -6,10 +6,12 @@ var config = {
     getAllBoards:rootdir+"getAllBoards.php",
     changeProduct:rootdir+"changeProduct.php",
     changeMetal:rootdir+"changeMetal.php",
-    addBoardOrder:rootdir+"addBoardOrder.php",
+    addOrder:rootdir+"addOrder.php",
     getAllOrderList:rootdir+"getAllOrderList.php",
     getOrderDetail:rootdir+"getOrderDetail.php",
-    showStockState:rootdir+"showStockState.php"
+    showStockState:rootdir+"showStockState.php",
+    getAllCommidity:rootdir+"getAllCommidity.php",
+    changeCmmProduct:rootdir+"changeCmmProduct.php"
   },
   const: {
     pagesize: 15,

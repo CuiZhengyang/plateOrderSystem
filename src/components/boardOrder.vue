@@ -247,7 +247,7 @@
       },
       handleClick(){
         if(this.$store.state.boardList.length!=0)
-         this.$router.push({path:"/checkOrder"})
+         this.$router.push({path:"/checkOrder/board"})
         else
           config.functions.tostNotify("您没有购买任何商品");
       },

@@ -161,8 +161,15 @@ import  config from "../config/config"
           config.functions.tostNotify("请输入收货人详细地址")
         }
         else{
-          this.$store.dispatch("addBoardOrder", {
-            type: 1,
+          let  type=""
+          if(this.$route.params.type=="board"){
+            type=1
+          }
+          else{
+            type=2
+          }
+          this.$store.dispatch("addOrder", {
+            type: type,
             remarks: this.remarks
           })
         }
@@ -246,7 +253,12 @@ import  config from "../config/config"
         }
       },
       list: function () {
-        return this.$store.state.boardList ? this.$store.state.boardList : [];
+        if(this.$route.params.type=="board"){
+          return this.$store.state.boardList ? this.$store.state.boardList : [];
+        }
+        else{
+          return this.$store.state.commodityList?this.$store.state.commodityList:[];
+        }
       }
     }
   }

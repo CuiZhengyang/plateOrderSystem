@@ -51,9 +51,10 @@ var router = new Router({
       component: commodityOrder
     },
     {
-      path: '/checkOrder',
+      path: '/checkOrder/:type',
       name: 'checkOrder',
-      component: checkOrder
+      component: checkOrder,
+      props:true
     },
     {
       path: '/stockCheck',

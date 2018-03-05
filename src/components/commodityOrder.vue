@@ -29,13 +29,14 @@
           <span slot="left">规格</span>
           <span slot="right">{{metal}}</span>
         </yd-cell-item>
-        <yd-cell-item arrow href="#" @click.native="changeColor">
+        <!--<yd-cell-item arrow href="#" @click.native="changeColor">-->
+        <yd-cell-item arrow href="#">
           <span slot="left">品牌</span>
           <span slot="right">{{color}}</span>
         </yd-cell-item>
         <yd-cell-item>
           <span slot="left">数量</span>
-          <yd-input slot="right" v-model.number="count" ref="count" required  regex="^[0-9]*[1-9][0-9]*$"
+          <yd-input slot="right" v-model.number="count" ref="count" required regex="^[0-9]*[1-9][0-9]*$"
                     :show-clear-icon="true"
                     :show-error-icon="false"
                     :show-success-icon="false"
@@ -63,7 +64,7 @@
             <div slot="content" class="demo-content vux-1px-t">
               <yd-list-item>
                 <!--<img slot="img" :src="item.img">-->
-                <span slot="title" >{{item.product}}</span>
+                <span slot="title">{{item.product}}</span>
                 <yd-list-other slot="other">
                   <div>
                     <span class="demo-list-price">{{item.metal}}</span>
@@ -151,7 +152,7 @@
       return {
         product: '',
         metal: "",
-        color: "",
+        color: "隆饰板材",
         count: '',
         popupVisible: false,
         popupVisible2: false,
@@ -159,7 +160,7 @@
         productSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: [],
             className: 'slot1',
             textAlign: 'center'
           }
@@ -167,7 +168,7 @@
         metalSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: [],
             className: 'slot1',
             textAlign: 'center'
           }
@@ -175,13 +176,10 @@
         colorSlots: [
           {
             flex: 1,
-            values: ['a', 'b', 'c', 'a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3', 'a4', 'b4', 'c4'],
+            values: ['隆饰板材'],
             className: 'slot1',
             textAlign: 'center'
           }
-        ],
-        list: [
-
         ]
       }
     },
@@ -190,16 +188,17 @@
         this.$router.go(-2)
       },
       addProduct() {
-        if(this.$refs.count.valid){
+        if (this.$refs.count.valid) {
           let item = {
             product: this.product,
             metal: this.metal,
             color: this.color,
             count: this.count
           }
-          this.list.push(item);
+          // this.list.push(item);
+          this.$store.commit("addCommodityList",item)
         }
-        else{
+        else {
           console.log(this.$refs.count.valid)
           this.$dialog.toast({
             mes: '请输入的数量有误',
@@ -219,6 +218,12 @@
       },
       onProductValuesChange(picker, values) {
         this.product = picker.getValues()[0];
+        if(this.product!=undefined)
+        {
+          this.$store.dispatch("changeCmmProduct",{"product":this.product }).then((data)=>{
+            this.metalSlots[0].values=data.standard;
+          })
+        }
       },
       onMetalValuesChange(picker, values) {
         this.metal = picker.getValues()[0];
@@ -227,14 +232,33 @@
         this.color = picker.getValues()[0];
       },
       onButtonClick(index) {
-        this.list.splice(index, 1)
+       this.$store.commit("delCommodityList",index)
       },
       handleEvents(type) {
         console.log('event: ', type)
       },
-      handleClick(){
-
+      handleClick() {
+        if(this.$store.state.commodityList.length!=0)
+          this.$router.push({path:"/checkOrder/commodity"})
+        else
+          config.functions.tostNotify("您没有购买任何商品");
+      },
+      initData() {
+        this.$store.dispatch("getAllCommidity").then((data) => {
+          this.productSlots[0].values=data.products;
+          this.metalSlots[0].values=data.standard;
+        })
       }
+    },
+    computed:{
+      list: function () {
+        return this.$store.state.commodityList?this.$store.state.commodityList:[];
+      }
+    },
+    created: function () {
+      this.$nextTick(() => {
+        this.initData();
+      })
     }
   }
 </script>

@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     province:"",
     tel:"",
     boardList:[],
+    commodityList:[]
   },
   getters:{
   },
