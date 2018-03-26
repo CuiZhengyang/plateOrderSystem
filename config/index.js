@@ -67,7 +67,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/facepayWeixin/',
+    assetsPublicPath: '/plateOrderSystem/client/',
 
     /**
      * Source Maps
